@@ -81,7 +81,7 @@ public class PlayerMotor : MonoBehaviour
     public void Sprint()
     {
         sprinting = !sprinting;
-        if (sprinting)
+        if (sprinting && !crouching)
             currentSpeed = sprintingSpeed;
         else
             currentSpeed = normalSpeed;
