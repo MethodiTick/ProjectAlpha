@@ -13,7 +13,7 @@ public class PlayerMov : MonoBehaviour
         public Transform cameraTransform;
 
         private Rigidbody rb;
-        private bool isJumping = false;
+       
 
         private void Start()
         {
@@ -32,23 +32,14 @@ public class PlayerMov : MonoBehaviour
             movement.y = rb.velocity.y;
 
             //Corsa
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                movement = movement.normalized * runSpeed;
-            }
-            else
-            {
-                movement = movement.normalized * moveSpeed;
-            }
+          
 
-            rb.velocity = movement;
-
-            //Salto
-            if (Input.GetButtonDown("Jump") && !isJumping)
-            {
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                isJumping = true;
-            }
+            ////Salto
+            //if (Input.GetButtonDown("Jump") && !isJumping)
+            //{
+            //    rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            //    isJumping = true;
+            //}
 
             //Movimento della visuale in prima persona
             float mouseX = Input.GetAxis("Mouse X");
@@ -64,14 +55,7 @@ public class PlayerMov : MonoBehaviour
             }
         }
 
-        private void OnCollisionEnter(Collision collision)
-        {
 
-            if (collision.gameObject.CompareTag("Ground"))
-            {
-                isJumping = false;
-            }
-        }
     }
 
 
