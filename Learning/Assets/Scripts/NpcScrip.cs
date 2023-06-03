@@ -7,9 +7,6 @@ using UnityEngine;
 public class NPCMaterialChanger : MonoBehaviour
 {
     public DayMod_States gameManager;
- 
-
-
 
     void Update()
     {
