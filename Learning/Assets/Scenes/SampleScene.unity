@@ -344,6 +344,11 @@ Transform:
   m_Father: {fileID: 880404627}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &183648834 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8006477088911258940, guid: 4189c5588a40de84d8efc3badaef07f3, type: 3}
+  m_PrefabInstance: {fileID: 1139024281}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &378419498
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,6 +359,8 @@ GameObject:
   m_Component:
   - component: {fileID: 378419499}
   - component: {fileID: 378419500}
+  - component: {fileID: 378419501}
+  - component: {fileID: 378419502}
   m_Layer: 0
   m_Name: Flaslight
   m_TagString: Untagged
@@ -390,6 +397,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: Take Flashlight
+  handTransform: {fileID: 1112844432}
+  rb: {fileID: 0}
+--- !u!65 &378419501
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378419498}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.048996925, y: 0.20891929, z: 0.045762643}
+  m_Center: {x: -0.0012414455, y: 0.10355008, z: -0.0009866068}
+--- !u!54 &378419502
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378419498}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &582974667 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8442446298709508560, guid: fd3ad2b392653bd40b47dba7e850a7d6, type: 3}
@@ -806,6 +863,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1112844431
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1112844432}
+  m_Layer: 0
+  m_Name: RightHand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1112844432
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112844431}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.507, y: 0.546, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 183648834}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1139024281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -868,7 +956,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8006477088911258940, guid: 4189c5588a40de84d8efc3badaef07f3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1112844432}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4189c5588a40de84d8efc3badaef07f3, type: 3}
 --- !u!1 &1316034846
