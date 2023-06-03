@@ -12,7 +12,7 @@ public class DayMod_States : MonoBehaviour
         Day4,
     }
 
-    public   GameState currentGameState;
+    public static  GameState currentGameState;
 
     void Start()
     {
