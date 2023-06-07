@@ -15,25 +15,17 @@ public class FlashlightToggle : MonoBehaviour
         lightGO.SetActive(isOn);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void lightOnOff()
     {
-        //toggle flashlight on key down
-        if (Input.GetKeyDown(KeyCode.X))
+        if(isOn)
         {
-            //toggle light
             isOn = !isOn;
-            //turn light on
-            if (isOn)
-            {
-                lightGO.SetActive(true);
-            }
-            //turn light off
-            else
-            {
-                lightGO.SetActive(false);
-
-            }
+            lightGO.SetActive(false);
+        }
+        else
+        {
+            isOn = !isOn;
+            lightGO.SetActive(true);
         }
     }
 }

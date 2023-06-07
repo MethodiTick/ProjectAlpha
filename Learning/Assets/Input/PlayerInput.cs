@@ -848,6 +848,34 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Objects"",
+            ""id"": ""559bb85d-aff7-4410-91e5-dbea562ca98e"",
+            ""actions"": [
+                {
+                    ""name"": ""Flashlight"",
+                    ""type"": ""Button"",
+                    ""id"": ""30a0e4e1-dc06-45c3-a981-5f89df4cc927"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""8e5be1f4-0a89-49f1-8d45-234d1c2406e1"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flashlight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -875,6 +903,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // Objects
+        m_Objects = asset.FindActionMap("Objects", throwIfNotFound: true);
+        m_Objects_Flashlight = m_Objects.FindAction("Flashlight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1182,6 +1213,52 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Objects
+    private readonly InputActionMap m_Objects;
+    private List<IObjectsActions> m_ObjectsActionsCallbackInterfaces = new List<IObjectsActions>();
+    private readonly InputAction m_Objects_Flashlight;
+    public struct ObjectsActions
+    {
+        private @PlayerInput m_Wrapper;
+        public ObjectsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Flashlight => m_Wrapper.m_Objects_Flashlight;
+        public InputActionMap Get() { return m_Wrapper.m_Objects; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ObjectsActions set) { return set.Get(); }
+        public void AddCallbacks(IObjectsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ObjectsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ObjectsActionsCallbackInterfaces.Add(instance);
+            @Flashlight.started += instance.OnFlashlight;
+            @Flashlight.performed += instance.OnFlashlight;
+            @Flashlight.canceled += instance.OnFlashlight;
+        }
+
+        private void UnregisterCallbacks(IObjectsActions instance)
+        {
+            @Flashlight.started -= instance.OnFlashlight;
+            @Flashlight.performed -= instance.OnFlashlight;
+            @Flashlight.canceled -= instance.OnFlashlight;
+        }
+
+        public void RemoveCallbacks(IObjectsActions instance)
+        {
+            if (m_Wrapper.m_ObjectsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IObjectsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ObjectsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ObjectsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public ObjectsActions @Objects => new ObjectsActions(this);
     public interface IOnFootActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -1207,5 +1284,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    public interface IObjectsActions
+    {
+        void OnFlashlight(InputAction.CallbackContext context);
     }
 }
